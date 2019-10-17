@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  heroku: circleci/heroku@0.0.8
+
 jobs:
   build:
     docker:
@@ -9,12 +12,25 @@ jobs:
 
     steps:
       - checkout
+      - heroku/install
       - setup_remote_docker:
           docker_layer_cashing: false 
 
       - run: mvn clean install
 
       - run: 
-          name: Build Docker Image1
+          name: Build Docker Image1git
           command: docker build -t registry.heroku.com/$HEROKU_APP_NAME/ web . 
+
+      - run:
+         name: Login To Heroku CR
+         command: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
+
+      - run:
+         name: Push to Heroku CR
+         command: docker push registry.heroku.com/$HEROKU_APP_NAME/web:latest
+      
+      - run:
+         name: Publish image
+         command: heroku container:release web -a $HEROKU_APP_NAME
 
