@@ -7,8 +7,7 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk:8-jdk
-    environment:
-      PORT: 8080
+
     
     working_directory: ~/repo
 
