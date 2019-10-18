@@ -19,8 +19,8 @@ jobs:
       - run: mvn clean install
 
       - run: 
-          name: Build Docker Image1git
-          command: docker build -t registry.heroku.com/$HEROKU_APP_NAME/ web . 
+          name: Build Docker Image
+          command: docker build -t registry.heroku.com/$HEROKU_APP_NAME web .
 
       - run:
          name: Login To Heroku CR
