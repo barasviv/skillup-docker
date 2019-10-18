@@ -1,4 +1,4 @@
-package com.nordea.microservices.controller;
+package com.nordea.microservices.test.controller;
 
 
 
