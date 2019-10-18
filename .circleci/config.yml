@@ -20,7 +20,7 @@ jobs:
 
       - run: 
           name: Build Docker Image
-          command: docker build -t registry.heroku.com/$HEROKU_APP_NAME web .
+          command: docker build -t registry.heroku.com/$HEROKU_APP_NAME/web .
 
       - run:
          name: Login To Heroku CR
